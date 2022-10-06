@@ -20,7 +20,7 @@ const modal = ref();
 
 const whatIsNew = () => {
 	modal.value.close();
-	window.open(`https://github.com/Evgen0922/speechka');
+	window.open('https://github.com/Evgen0922/speechka');
 };
 </script>
 
