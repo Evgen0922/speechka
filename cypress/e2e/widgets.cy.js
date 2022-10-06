@@ -60,6 +60,6 @@ describe('After user signed in', () => {
 	buildWidgetTest('onlineUsers');
 	buildWidgetTest('jobQueue');
 	buildWidgetTest('button');
-	buildWidgetTest('aiscript');
-	buildWidgetTest('aichan');
+	// buildWidgetTest('aiscript');
+	// buildWidgetTest('aichan');
 });

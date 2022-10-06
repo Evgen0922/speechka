@@ -5,7 +5,7 @@ import { Notes, UserProfiles, NoteReactions } from '@/models/index.js';
 import { generateMutedUserQuery } from './generate-muted-user-query.js';
 import { generateBlockedUserQuery } from './generate-block-query.js';
 
-// TODO: リアクション、Renote、返信などをしたノートは除外する
+
 
 export async function injectFeatured(timeline: Note[], user?: User | null) {
 	if (timeline.length < 5) return;
@@ -16,7 +16,7 @@ export async function injectFeatured(timeline: Note[], user?: User | null) {
 	}
 
 	const max = 30;
-	const day = 1000 * 60 * 60 * 24 * 3; // 3日前まで
+	const day = 1000 * 60 * 60 * 24 * 3; 
 
 	const query = Notes.createQueryBuilder('note')
 		.addSelect('note.score')

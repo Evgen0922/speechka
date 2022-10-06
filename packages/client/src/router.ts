@@ -6,7 +6,7 @@ import MkTimeline from '@/pages/timeline.vue';
 import { $i, iAmModerator } from './account';
 import { ui } from '@/config';
 
-// pathに/が入るとrollupが解決してくれないので、() => import('*.vue')を指定すること
+
 const page = (path: string | AsyncComponentLoader<any>, uiName?: string) => defineAsyncComponent({
 	loader: typeof path === 'string' ? uiName ? () => import(`./ui/${ui}/pages/${path}.vue`) : () => import(`./pages/${path}.vue`) : path,
 	loadingComponent: MkLoading,
@@ -16,7 +16,7 @@ const page = (path: string | AsyncComponentLoader<any>, uiName?: string) => defi
 let indexScrollPos = 0;
 
 const defaultRoutes = [
-	// NOTE: MkTimelineをdynamic importするとAsyncComponentWrapperが間に入るせいでkeep-aliveのコンポーネント指定が効かなくなる
+	
 	{ path: '/', name: 'index', component: $i ? MkTimeline : page('welcome') },
 	{ path: '/@:acct/:page?', name: 'user', component: page(() => import('./pages/user/index.vue')), props: route => ({ acct: route.params.acct, page: route.params.page || 'index' }) },
 	{ path: '/@:user/pages/:page', component: page('page'), props: route => ({ pageName: route.params.page, username: route.params.user }) },
@@ -110,10 +110,9 @@ function margeRoutes(routes: any[]) {
 export const router = createRouter({
 	history: createWebHistory(),
 	routes: margeRoutes(ui === 'chat' ? chatRoutes : []),
-	// なんかHacky
-	// 通常の使い方をすると scroll メソッドの behavior を設定できないため、自前で window.scroll するようにする
+	
 	scrollBehavior(to) {
-		window._scroll = () => { // さらにHacky
+		window._scroll = () => { 
 			if (to.name === 'index') {
 				window.scroll({ top: indexScrollPos, behavior: 'instant' });
 				const i = window.setInterval(() => {
@@ -140,7 +139,7 @@ export function resolve(path: string) {
 	const route = resolved.matched[0];
 	return {
 		component: markRaw(route.components.default),
-		// TODO: route.propsには関数以外も入る可能性があるのでよしなにハンドリングする
+		
 		props: route.props?.default ? route.props.default(resolved) : resolved.params
 	};
 }

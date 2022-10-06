@@ -100,18 +100,14 @@ function validateActor(x: IObject, uri: string): IActor {
 	return x;
 }
 
-/**
- * Personをフェッチします。
- *
- * Misskeyに対象のPersonが登録されていればそれを返します。
- */
+
 export async function fetchPerson(uri: string, resolver?: Resolver): Promise<CacheableUser | null> {
 	if (typeof uri !== 'string') throw new Error('uri is not string');
 
 	const cached = uriPersonCache.get(uri);
 	if (cached) return cached;
 
-	// URIがこのサーバーを指しているならデータベースからフェッチ
+	
 	if (uri.startsWith(config.url + '/')) {
 		const id = uri.split('/').pop();
 		const u = await Users.findOneBy({ id });
@@ -119,7 +115,7 @@ export async function fetchPerson(uri: string, resolver?: Resolver): Promise<Cac
 		return u;
 	}
 
-	//#region このサーバーに既に登録されていたらそれを返す
+	
 	const exist = await Users.findOneBy({ uri });
 
 	if (exist) {
@@ -131,9 +127,7 @@ export async function fetchPerson(uri: string, resolver?: Resolver): Promise<Cac
 	return null;
 }
 
-/**
- * Personを作成します。
- */
+
 export async function createPerson(uri: string, resolver?: Resolver): Promise<User> {
 	if (typeof uri !== 'string') throw new Error('uri is not string');
 
@@ -208,7 +202,7 @@ export async function createPerson(uri: string, resolver?: Resolver): Promise<Us
 	} catch (e) {
 		// duplicate key error
 		if (isDuplicateKeyValueError(e)) {
-			// /users/@a => /users/:id のように入力がaliasなときにエラーになることがあるのを対応
+			
 			const u = await Users.findOneBy({
 				uri: person.id,
 			});
@@ -233,10 +227,10 @@ export async function createPerson(uri: string, resolver?: Resolver): Promise<Us
 
 	usersChart.update(user!, true);
 
-	// ハッシュタグ更新
+	
 	updateUsertags(user!, tags);
 
-	//#region アバターとヘッダー画像をフェッチ
+	//#region 
 	const [avatar, banner] = await Promise.all([
 		person.icon,
 		person.image,
@@ -258,7 +252,7 @@ export async function createPerson(uri: string, resolver?: Resolver): Promise<Us
 	user!.bannerId = bannerId;
 	//#endregion
 
-	//#region カスタム絵文字取得
+	//#region
 	const emojis = await extractEmojis(person.tag || [], host).catch(e => {
 		logger.info(`extractEmojis: ${e}`);
 		return [] as Emoji[];
@@ -277,21 +271,21 @@ export async function createPerson(uri: string, resolver?: Resolver): Promise<Us
 }
 
 /**
- * Personの情報を更新します。
- * Misskeyに対象のPersonが登録されていなければ無視します。
- * @param uri URI of Person
- * @param resolver Resolver
- * @param hint Hint of Person object (この値が正当なPersonの場合、Remote resolveをせずに更新に利用します)
+ * 
+ * 
+ * @param uri 
+ * @param resolver 
+ * @param hint 
  */
 export async function updatePerson(uri: string, resolver?: Resolver | null, hint?: IObject): Promise<void> {
 	if (typeof uri !== 'string') throw new Error('uri is not string');
 
-	// URIがこのサーバーを指しているならスキップ
+	
 	if (uri.startsWith(config.url + '/')) {
 		return;
 	}
 
-	//#region このサーバーに既に登録されているか
+	
 	const exist = await Users.findOneBy({ uri }) as IRemoteUser;
 
 	if (exist == null) {
@@ -307,7 +301,7 @@ export async function updatePerson(uri: string, resolver?: Resolver | null, hint
 
 	logger.info(`Updating the Person: ${person.id}`);
 
-	// アバターとヘッダー画像をフェッチ
+	
 	const [avatar, banner] = await Promise.all([
 		person.icon,
 		person.image,
@@ -317,7 +311,7 @@ export async function updatePerson(uri: string, resolver?: Resolver | null, hint
 			: resolveImage(exist, img).catch(() => null),
 	));
 
-	// カスタム絵文字取得
+	
 	const emojis = await extractEmojis(person.tag || [], exist.host).catch(e => {
 		logger.info(`extractEmojis: ${e}`);
 		return [] as Emoji[];
@@ -374,10 +368,10 @@ export async function updatePerson(uri: string, resolver?: Resolver | null, hint
 
 	publishInternalEvent('remoteUserUpdated', { id: exist.id });
 
-	// ハッシュタグ更新
+	
 	updateUsertags(exist, tags);
 
-	// 該当ユーザーが既にフォロワーになっていた場合はFollowingもアップデートする
+	
 	await Followings.update({
 		followerId: exist.id,
 	}, {
@@ -387,16 +381,11 @@ export async function updatePerson(uri: string, resolver?: Resolver | null, hint
 	await updateFeatured(exist.id).catch(err => logger.error(err));
 }
 
-/**
- * Personを解決します。
- *
- * Misskeyに対象のPersonが登録されていればそれを返し、そうでなければ
- * リモートサーバーからフェッチしてMisskeyに登録しそれを返します。
- */
+
 export async function resolvePerson(uri: string, resolver?: Resolver): Promise<CacheableUser> {
 	if (typeof uri !== 'string') throw new Error('uri is not string');
 
-	//#region このサーバーに既に登録されていたらそれを返す
+	
 	const exist = await fetchPerson(uri);
 
 	if (exist) {
@@ -404,7 +393,7 @@ export async function resolvePerson(uri: string, resolver?: Resolver): Promise<C
 	}
 	//#endregion
 
-	// リモートサーバーからフェッチしてきて登録
+	
 	if (resolver == null) resolver = new Resolver();
 	return await createPerson(uri, resolver);
 }
@@ -482,14 +471,14 @@ export async function updateFeatured(userId: User['id']) {
 	// Resolve and regist Notes
 	const limit = promiseLimit<Note | null>(2);
 	const featuredNotes = await Promise.all(items
-		.filter(item => getApType(item) === 'Note')	// TODO: Noteでなくてもいいかも
+		.filter(item => getApType(item) === 'Note')	
 		.slice(0, 5)
 		.map(item => limit(() => resolveNote(item, resolver))));
 
 	await db.transaction(async transactionalEntityManager => {
 		await transactionalEntityManager.delete(UserNotePining, { userId: user.id });
 
-		// とりあえずidを別の時間で生成して順番を維持
+	
 		let td = 0;
 		for (const note of featuredNotes.filter(note => note != null)) {
 			td -= 1000;

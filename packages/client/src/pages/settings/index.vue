@@ -94,12 +94,14 @@ const menuDef = computed(() => [{
 		text: i18n.ts.email,
 		to: '/settings/email',
 		active: props.initialPage === 'email',
-	}, {
-		icon: 'fas fa-share-alt',
-		text: i18n.ts.integration,
-		to: '/settings/integration',
-		active: props.initialPage === 'integration',
-	}, {
+	}, 
+	// {
+	// 	icon: 'fas fa-share-alt',
+	// 	text: i18n.ts.integration,
+	// 	to: '/settings/integration',
+	// 	active: props.initialPage === 'integration',
+	// }, 
+	{
 		icon: 'fas fa-lock',
 		text: i18n.ts.security,
 		to: '/settings/security',
@@ -127,12 +129,14 @@ const menuDef = computed(() => [{
 		text: i18n.ts.sounds,
 		to: '/settings/sounds',
 		active: props.initialPage === 'sounds',
-	}, {
-		icon: 'fas fa-plug',
-		text: i18n.ts.plugins,
-		to: '/settings/plugin',
-		active: props.initialPage === 'plugin',
-	}],
+	}, 
+	// {
+	// 	icon: 'fas fa-plug',
+	// 	text: i18n.ts.plugins,
+	// 	to: '/settings/plugin',
+	// 	active: props.initialPage === 'plugin',
+	// }
+],
 }, {
 	title: i18n.ts.otherSettings,
 	items: [{
@@ -140,12 +144,14 @@ const menuDef = computed(() => [{
 		text: i18n.ts.importAndExport,
 		to: '/settings/import-export',
 		active: props.initialPage === 'import-export',
-	}, {
-		icon: 'fas fa-volume-mute',
-		text: i18n.ts.instanceMute,
-		to: '/settings/instance-mute',
-		active: props.initialPage === 'instance-mute',
-	}, {
+	}, 
+	// {
+	// 	icon: 'fas fa-volume-mute',
+	// 	text: i18n.ts.instanceMute,
+	// 	to: '/settings/instance-mute',
+	// 	active: props.initialPage === 'instance-mute',
+	// }, 
+	{
 		icon: 'fas fa-ban',
 		text: i18n.ts.muteAndBlock,
 		to: '/settings/mute-block',
@@ -155,17 +161,20 @@ const menuDef = computed(() => [{
 		text: i18n.ts.wordMute,
 		to: '/settings/word-mute',
 		active: props.initialPage === 'word-mute',
-	}, {
-		icon: 'fas fa-key',
-		text: 'API',
-		to: '/settings/api',
-		active: props.initialPage === 'api',
-	}, {
-		icon: 'fas fa-bolt',
-		text: 'Webhook',
-		to: '/settings/webhook',
-		active: props.initialPage === 'webhook',
-	}, {
+	}, 
+	// {
+	// 	icon: 'fas fa-key',
+	// 	text: 'API',
+	// 	to: '/settings/api',
+	// 	active: props.initialPage === 'api',
+	// }, 
+	// {
+	// 	icon: 'fas fa-bolt',
+	// 	text: 'Webhook',
+	// 	to: '/settings/webhook',
+	// 	active: props.initialPage === 'webhook',
+	// }, 
+	{
 		icon: 'fas fa-ellipsis-h',
 		text: i18n.ts.other,
 		to: '/settings/other',

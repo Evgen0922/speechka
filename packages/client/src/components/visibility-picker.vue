@@ -30,14 +30,14 @@
 			</div>
 		</button>
 		<div class="divider"></div>
-		<button key="localOnly" class="_button localOnly" :class="{ active: localOnly }" data-index="5" @click="localOnly = !localOnly">
+		<!-- <button key="localOnly" class="_button localOnly" :class="{ active: localOnly }" data-index="5" @click="localOnly = !localOnly">
 			<div><i class="fas fa-biohazard"></i></div>
 			<div>
 				<span>{{ $ts._visibility.localOnly }}</span>
 				<span>{{ $ts._visibility.localOnlyDescription }}</span>
 			</div>
 			<div><i :class="localOnly ? 'fas fa-toggle-on' : 'fas fa-toggle-off'"></i></div>
-		</button>
+		</button> -->
 	</div>
 </MkModal>
 </template>
