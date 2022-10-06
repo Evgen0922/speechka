@@ -20,7 +20,7 @@
 				<template #key>Misskey</template>
 				<template #value>{{ version }}</template>
 			</MkKeyValue>
-			<FormLink to="/about-misskey">{{ $ts.aboutMisskey }}</FormLink>
+			<FormLink to="/about-speechka">{{ $ts.aboutMisskey }}</FormLink>
 		</FormSection>
 
 		<FormSection>
@@ -53,7 +53,7 @@
 			</FormSection>
 		</FormSuspense>
 
-		<FormSection>
+		<!-- <FormSection>
 			<template #label>Well-known resources</template>
 			<div class="_formLinks">
 				<FormLink :to="`/.well-known/host-meta`" external>host-meta</FormLink>
@@ -62,7 +62,7 @@
 				<FormLink :to="`/robots.txt`" external>robots.txt</FormLink>
 				<FormLink :to="`/manifest.json`" external>manifest.json</FormLink>
 			</div>
-		</FormSection>
+		</FormSection> -->
 	</div>
 </MkSpacer>
 <MkSpacer v-else-if="tab === 'charts'" :content-max="1200" :margin-min="20">

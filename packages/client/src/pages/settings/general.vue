@@ -39,7 +39,7 @@
 
 	<FormSection>
 		<template #label>{{ i18n.ts.appearance }}</template>
-		<FormSwitch v-model="disableAnimatedMfm" class="_formBlock">{{ i18n.ts.disableAnimatedMfm }}</FormSwitch>
+		<!-- <FormSwitch v-model="disableAnimatedMfm" class="_formBlock">{{ i18n.ts.disableAnimatedMfm }}</FormSwitch> -->
 		<FormSwitch v-model="reduceAnimation" class="_formBlock">{{ i18n.ts.reduceUiAnimation }}</FormSwitch>
 		<FormSwitch v-model="useBlurEffect" class="_formBlock">{{ i18n.ts.useBlurEffect }}</FormSwitch>
 		<FormSwitch v-model="useBlurEffectForModal" class="_formBlock">{{ i18n.ts.useBlurEffectForModal }}</FormSwitch>
@@ -62,16 +62,16 @@
 		</FormRadios>
 	</FormSection>
 
-	<FormSection>
+	<!-- <FormSection>
 		<FormSwitch v-model="aiChanMode">{{ i18n.ts.aiChanMode }}</FormSwitch>
-	</FormSection>
+	</FormSection> -->
 
-	<FormSelect v-model="instanceTicker" class="_formBlock">
+	<!-- <FormSelect v-model="instanceTicker" class="_formBlock">
 		<template #label>{{ i18n.ts.instanceTicker }}</template>
 		<option value="none">{{ i18n.ts._instanceTicker.none }}</option>
 		<option value="remote">{{ i18n.ts._instanceTicker.remote }}</option>
 		<option value="always">{{ i18n.ts._instanceTicker.always }}</option>
-	</FormSelect>
+	</FormSelect> -->
 
 	<FormSelect v-model="nsfw" class="_formBlock">
 		<template #label>{{ i18n.ts.nsfw }}</template>

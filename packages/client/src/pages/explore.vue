@@ -67,11 +67,11 @@
 						<template #prefix><i class="fas fa-search"></i></template>
 						<template #label>{{ $ts.searchUser }}</template>
 					</MkInput>
-					<MkRadios v-model="searchOrigin">
+					<!-- <MkRadios v-model="searchOrigin">
 						<option value="combined">{{ $ts.all }}</option>
 						<option value="local">{{ $ts.local }}</option>
 						<option value="remote">{{ $ts.remote }}</option>
-					</MkRadios>
+					</MkRadios> -->
 				</div>
 
 				<XUserList v-if="searchQuery" ref="search" class="_gap" :pagination="searchPagination"/>
@@ -112,19 +112,23 @@ export default defineComponent({
 				title: this.$ts.explore,
 				icon: 'fas fa-hashtag',
 				bg: 'var(--bg)',
-				tabs: [{
+				tabs: [
+					{
 					active: this.tab === 'local',
 					title: this.$ts.local,
 					onClick: () => { this.tab = 'local'; },
-				}, {
-					active: this.tab === 'remote',
-					title: this.$ts.remote,
-					onClick: () => { this.tab = 'remote'; },
-				}, {
+				    }, 
+				// {
+				// 	active: this.tab === 'remote',
+				// 	title: this.$ts.remote,
+				// 	onClick: () => { this.tab = 'remote'; },
+				// }, 
+				{
 					active: this.tab === 'search',
 					title: this.$ts.search,
 					onClick: () => { this.tab = 'search'; },
-				},]
+				},
+			]
 			})),
 			tab: 'local',
 			pinnedUsers: { endpoint: 'pinned-users' },

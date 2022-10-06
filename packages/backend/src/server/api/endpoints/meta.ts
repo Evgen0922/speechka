@@ -36,7 +36,7 @@ export const meta = {
 				type: 'string',
 				optional: false, nullable: false,
 				format: 'url',
-				example: 'https://misskey.example.com',
+				example: 'https://speechka.example.com',
 			},
 			description: {
 				type: 'string',

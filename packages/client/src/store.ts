@@ -254,9 +254,7 @@ type Plugin = {
 	ast: any[];
 };
 
-/**
- * 常にメモリにロードしておく必要がないような設定情報を保管するストレージ(非リアクティブ)
- */
+
 import lightTheme from '@/themes/l-light.json5';
 import darkTheme from '@/themes/d-dark.json5';
 
@@ -268,21 +266,19 @@ export class ColdDeviceStorage {
 		plugins: [] as Plugin[],
 		mediaVolume: 0.5,
 		sound_masterVolume: 0.3,
-		sound_note: { type: 'syuilo/down', volume: 1 },
-		sound_noteMy: { type: 'syuilo/up', volume: 1 },
-		sound_notification: { type: 'syuilo/pope2', volume: 1 },
-		sound_chat: { type: 'syuilo/pope1', volume: 1 },
-		sound_chatBg: { type: 'syuilo/waon', volume: 1 },
-		sound_antenna: { type: 'syuilo/triple', volume: 1 },
-		sound_channel: { type: 'syuilo/square-pico', volume: 1 },
+		sound_note: { type: 'kevgen/down', volume: 1 },
+		sound_noteMy: { type: 'kevgen/up', volume: 1 },
+		sound_notification: { type: 'kevgen/pope2', volume: 1 },
+		sound_chat: { type: 'kevgen/pope1', volume: 1 },
+		sound_chatBg: { type: 'kevgen/waon', volume: 1 },
+		sound_antenna: { type: 'kevgen/triple', volume: 1 },
+		sound_channel: { type: 'kevgen/square-pico', volume: 1 },
 	};
 
 	public static watchers = [];
 
 	public static get<T extends keyof typeof ColdDeviceStorage.default>(key: T): typeof ColdDeviceStorage.default[T] {
-		// TODO: indexedDBにする
-		//       ただしその際はnullチェックではなくキー存在チェックにしないとダメ
-		//       (indexedDBはnullを保存できるため、ユーザーが意図してnullを格納した可能性がある)
+	
 		const value = localStorage.getItem(PREFIX + key);
 		if (value == null) {
 			return ColdDeviceStorage.default[key];

@@ -40,6 +40,6 @@ export const widgets = [
 	'onlineUsers',
 	'jobQueue',
 	'button',
-	'aiscript',
-	'aichan',
+	// 'aiscript',
+	// 'aichan',
 ];
