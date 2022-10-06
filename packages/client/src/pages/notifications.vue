@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 	<MkStickyContainer>
 		<template #header><MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs"/></template>
 		<MkSpacer :content-max="800">
@@ -92,8 +92,8 @@
 		title: i18n.ts.notifications,
 		icon: 'fas fa-bell',
 	})));
-	</script>
-<!-- <template>
+	</script> -->
+<template>
 <MkSpacer :content-max="800">
 	<div class="clupoqwt">
 		<XNotifications class="notifications" :include-types="includeTypes" :unread-only="tab === 'unread'"/>
@@ -163,4 +163,4 @@ defineExpose({
 <style lang="scss" scoped>
 .clupoqwt {
 }
-</style> -->
+</style>
