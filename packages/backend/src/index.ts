@@ -1,6 +1,4 @@
-/**
- * Misskey Entry Point!
- */
+
 
 import { EventEmitter } from 'node:events';
 import boot from './boot/index.js';

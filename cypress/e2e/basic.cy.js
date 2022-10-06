@@ -137,7 +137,7 @@ describe('After user singed in', () => {
 
 	it('note', () => {
 		cy.get('[data-cy-open-post-form]').click();
-		cy.get('[data-cy-post-form-text]').type('Hello, Misskey!');
+		cy.get('[data-cy-post-form-text]').type('Hello, Speechka!');
 		cy.get('[data-cy-open-post-form-submit]').click();
 
 		cy.contains('Hello, Misskey!');
